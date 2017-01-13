@@ -1,0 +1,12 @@
+<view class="c_page">
+	<view class="c_top_banner">
+		<image class="c_top_banner_pic" src="http://act.cycangcdn.com/comm_img/logo.png"></image>
+	</view>
+	<view class="c_serach">
+		<input class="search-input" placeholder="搜索商品名称" bindtap="bindFocus" auto-focus >
+                <icon type="search" size="20" color="purple" class="search-icon inside"/>
+		</input>
+	</view>	
+	<view class="c_coupon"></view>
+	<view class="c_divination"></view>	 
+</view>

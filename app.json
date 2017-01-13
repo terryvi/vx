@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "page/index/index",
+    "page/list/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "次元仓",
+    "navigationBarBackgroundColor": "#fbf9fe",
+    "backgroundColor": "#fbf9fe"
+  },
+  "tabBar": {
+    "color": "#dddddd",
+    "selectedColor": "#ed3f3f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [{
+      "pagePath": "page/index/index",
+      "iconPath": "image/home.png",
+      "selectedIconPath": "image/home-on.png",
+      "text": "主页菌"
+    }, {
+      "pagePath": "page/list/index",
+      "iconPath": "image/category.png",
+      "selectedIconPath": "image/category-on.png",
+      "text": "列表菌"
+    }]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

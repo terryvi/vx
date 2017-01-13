@@ -1,0 +1,11 @@
+.c_page{
+	width: 100%;
+}
+.c_top_banner{
+	display: block;
+	width: 100%;
+}
+.c_top_banner_pic{
+	display:block;
+	width:100%;
+}
