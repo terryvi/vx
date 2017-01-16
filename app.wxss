@@ -167,11 +167,6 @@ page {
 .tc{
     text-align: center;
 }
-
-.page input{
-    padding: 20rpx 30rpx;
-    background-color: #fff;
-}
 checkbox, radio{
     margin-right: 10rpx;
 }

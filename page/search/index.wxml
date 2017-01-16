@@ -1,3 +1,42 @@
 <view class="page">
-	你已经来到了搜索页啦
+  <view class="c_nav_header"> 
+    <view class="c_search_wrapper"> 
+        <!--<view class="search-select" hidden="{{selectHide}}">
+          <navigator>Content</navigator>
+          <navigator>Content</navigator>
+        </view>-->
+        <view class="c_search_contianer">
+            <input class="c_search_input" placeholder="请输入商品名称" auto-focus
+            bindinput="bindInput"  bindchange="bindchange" value="{{inputValue}}"/>
+            <icon hidden="{{!inputValue}}" class="c_clear_icon" type="clear" size="20" bindtap="clearInput"></icon>
+        </view>
+        <!-- <button class="clearInput" style="display:inline-block" bindtap="clearInput">×</button> -->
+        <button  class="c_search_btn" bindtap="setSearchStorage">搜索</button>
+    </view>
+  </view>
+  <view class="zong">
+   <!--  <view class="local" wx:for="{{getSearch}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx" >
+      <view wx:if="{{itemName != ''}}"> {{itemName}} </view>
+    </view> -->
+    <modal class="modal" hidden="{{modalHidden}}" bindconfirm="modalChangeConfirm" bindcancel="modalChangeCancel">
+      <view> 是否清除搜索记录?</view>
+    </modal>
+    <view class="c_list_wrapper" hidden="{{!getSearch.length}}">
+    	<view  style="overflow:hidden;margin-bottom: 10px;">
+    		<view class="c_list_tlt">历史记录</view> <view class="c_list_clear" bindtap="clearSearchStorage">清除</view>
+    	</view>
+    	<block  wx:for="{{getSearch}}">
+    		<view class="c_list_item">{{item}}</view>
+    	</block>
+    </view>
+    <view class="c_list_wrapper">
+    	<view style="overflow:hidden;margin-bottom: 10px;">
+    		<view class="c_list_tlt">热门搜索</view> <view class="c_list_change">换一批</view>
+    	</view>
+    	<block  wx:for="{{hotSearch}}">
+    		<view class="c_list_item">{{item}}</view>
+    	</block>
+    </view>
+    <!-- <button style="display:inline-block" bindtap="clearSearchStorage">清空浏览记录</button> -->
+  </view>
 </view>

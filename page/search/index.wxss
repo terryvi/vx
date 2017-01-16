@@ -1,3 +1,111 @@
-.page{
-	color:green;
+view{
+  font-size: 14px;
+}
+.c_nav_header{
+  position:fixed;
+  z-index:99;
+  width:100%;
+  /*background-color: #eee*/
+  border-bottom: 1px solid grey;
+}
+.page__bd{
+  margin-top: 50px
+}
+.shaoyishao{
+  display: inline-block;
+  background: pink;
+   height: 30px;
+   width:30px
+}
+.search view{
+  display: inline-block;
+}
+.c_search_wrapper .c_search_input{
+  background-color:#fff;
+  height:40px;
+  border-radius:20px;
+  padding-left:20px;
+  padding-right:40px;
+  font-size: 14px;
+  color: #333333;
+}
+
+.outside{
+  position: absolute
+}
+.search-select{
+  display: inline-block
+}
+.local{
+  display: inline-block;
+  border: 1px red solid;
+  border-radius: 3px;
+  background-color: #eee;
+  margin-left: 10px;
+}
+.zong{
+    margin-top: 60px;
+}
+.clearInput{
+  left: -40px;
+}
+.c_clear_icon{
+  position: absolute;
+  right: 10px;
+  top: 8px;
+}
+.c_search_contianer{
+  position: relative;
+  width: 70%;
+  float: left;
+}
+.c_search_btn{
+  display:inline-block;
+  float:right;
+  height:40px;
+  margin:0 5%;
+  width:20%;
+  font-size:14px;
+  vertical-align:middle;
+  padding-top:5px;
+  color: #333333;
+}
+
+.c_search_wrapper{
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.c_list_wrapper{
+  padding: 12px;
+  overflow: hidden;
+}
+.c_list_tlt{
+  float: left;
+  color: grey;
+}
+.c_list_clear{
+  float: right;
+  color: #ed3f3f;
+}
+.c_list_change{
+  float: right;
+  color: #ed3f3f;
+}
+.c_list_item_list{
+  overflow: hidden;
+
+}
+.c_list_item{
+  padding:8px;
+  max-width:60px;
+  overflow:hidden;
+  font-size:12px;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  border-radius:5px;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  color: #333333;
+  background: #efeff4;
 }

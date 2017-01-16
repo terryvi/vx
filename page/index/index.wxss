@@ -1,4 +1,7 @@
 .c_page{
+	font-size:12px;
+}
+.c_page{
 	width: 100%;
 }
 .c_top_banner{
@@ -8,4 +11,30 @@
 .c_top_banner_pic{
 	display:block;
 	width:100%;
+}
+
+.c_search{
+	text-align:center;
+}
+.c_search_input{
+	margin:30rpx 0;
+	border:2px solid #ed3f3f;
+	border-radius:10px;
+	width:50%;
+	display:inline-block;
+	font-size:14px;
+	position:relative;
+	padding:0 18px;
+}
+.c_search_icon{
+	position: absolute;
+	left: 5px;
+	top: 3px;
+
+}
+.c_divination{
+	padding:0 20px; 
+}
+.c_divination_title{
+	
 }
