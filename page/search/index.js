@@ -6,13 +6,17 @@ Page({
     getSearch:[],
     modalHidden:true,
     hotSearch:[],
-    isSearch:false
+    isSearch:false,
+    isShowResult:false,
+    navbar: ['综合', '销量', '价格'],
+    currentNavbar: '0',
   },
   bindInput:function(e){
      this.setData({
-       inputValue:e.detail.value
-     })
-     console.log('bindInput'+this.data.inputValue)
+       inputValue:e.detail.value,
+       isSearch: e.detail.value?true:false
+     });
+      // 目前不做下拉框类似关键字这样的东西先。
   },
   /**
    * [setSearchStorage 点击搜索按钮]
@@ -26,8 +30,17 @@ Page({
       var searchData = wx.getStorageSync('searchData') || []
       searchData.push(this.data.inputValue)
       wx.setStorageSync('searchData', searchData)
-      wx.navigateTo({
-          url: '../result/result'
+      // wx.navigateTo({
+      //     url: '../result/result?searchWord='+this.data.inputValue
+      // })
+      this.setData({
+        isShowResult:true
+      })
+      wx.showToast({
+        title: '努力请求中~',
+        icon: 'loading',
+        duration: 2000,
+        mask:true
       })
       // console.log('马上就要跳转了！')
     }else{
@@ -82,10 +95,25 @@ Page({
   },
   bindchange:function(e){
     console.log('bindchange');
+
   },
   clearInput:function(){
     this.setData({
-       inputValue:''
+       inputValue:'',
+       isSearch:false
      })
+  },
+  backToIndex:function(){
+    // 文档里边说过tabbar的页面不能直接用 navigateTo这样
+    wx.switchTab({
+        url: '../index/index'
+    })
+  },
+  switchNav: function(e) {
+    this.setData({
+      currentNavbar: e.currentTarget.dataset.idx
+    })
+    wx.showNavigationBarLoading();
+    // 本来应该是发送请求去服务端的，现在就本地的来
   }
 })

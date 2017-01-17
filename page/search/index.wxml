@@ -11,10 +11,11 @@
             <icon hidden="{{!inputValue}}" class="c_clear_icon" type="clear" size="20" bindtap="clearInput"></icon>
         </view>
         <!-- <button class="clearInput" style="display:inline-block" bindtap="clearInput">×</button> -->
-        <button  class="c_search_btn" bindtap="setSearchStorage">搜索</button>
+        <button hidden="{{!isSearch}}" class="c_search_btn" bindtap="setSearchStorage">搜索</button>
+        <button hidden="{{isSearch}}" class="c_search_btn"  bindtap="backToIndex" >取消</button>
     </view>
   </view>
-  <view class="zong">
+  <view hidden="{{isShowResult}}" class="zong">
    <!--  <view class="local" wx:for="{{getSearch}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx" >
       <view wx:if="{{itemName != ''}}"> {{itemName}} </view>
     </view> -->
@@ -37,6 +38,44 @@
     		<view class="c_list_item">{{item}}</view>
     	</block>
     </view>
-    <!-- <button style="display:inline-block" bindtap="clearSearchStorage">清空浏览记录</button> -->
+  </view>
+  <view hidden="{{!isShowResult}}" class="c_result_wrap">
+  		<view class="c_nav_bar">
+  		  <view class="c_navbar_item" wx:for="{{navbar}}" wx:for-index="idx" data-idx="{{idx}}" bindtap="switchNav">
+  		    <text class="c_navbar_text {{currentNavbar==idx ? 'active' : ''}}">{{item}}</text>
+  		  </view>
+  		</view>
+  		<scroll-view class="hot-item-container {{currentNavbar==0 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
+  		  scroll-y="true" bindscrolltolower="pullUpLoad">
+  		  <block wx:for="{{list}}">
+  		    <view class="hot-item">
+  		      <view class="image-container" data-row-id="{{item.row_id}}" bindtap="onItemClick">
+  		        <image src="{{_api.HOST_WORK+item.pic.pid}}!app.c540.webp"
+  		          mode="scaleToFill" class="hot-image"
+  		          style="width:{{systemInfo.windowWidth}}px;height:{{systemInfo.windowWidth}}px">
+  		        </image>
+  		        <view class="item-mask">
+  		          <text class="hot-item-title">{{item.name}}</text>
+  		          <text class="hot-item-category">{{item.category}}{{item.size_label?' / '+item.size_label:''}}{{item.times?' / '+item.times:''}}</text>
+  		        </view>
+  		      </view>
+
+  		      <view class="hot-item-desc">
+  		        <image src="{{_api.HOST_HEAD+item.user.uid}}/180" class="hot-head-image"></image>
+  		        <view class="hot-item-detail">
+  		          <text class="hot-item-username">{{item.name}}</text>
+  		          <view class="hot-location">
+  		            <image src="../../images/location.png" class="hot-location-icon"></image>
+  		            {{item.user.city}}
+  		          </view>
+  		        </view>
+  		        <view class="hot-item-like">
+  		          <image src="../../images/like.png" class="hot-like-icon"></image>
+  		          {{item.num_liked}}
+  		        </view>
+  		      </view>
+  		    </view>
+  		  </block>
+  		</scroll-view>
   </view>
 </view>
