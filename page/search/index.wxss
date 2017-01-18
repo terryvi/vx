@@ -229,3 +229,24 @@ view{
     display: flex;
     background: #eee;
 }
+.c_prod_item{
+  overflow: hidden;
+  border-bottom: 1px solid #d8d8d8;
+}
+.c_prod_img{
+  width: 25%;
+}
+.c_prod_right{
+  width: 75%;
+}
+.c_left{
+  float: left;
+}
+.c_prod_name{
+  margin: 10px 0px 0px 10px;
+  color: #000;
+}
+.c_prod_price{
+  margin: 20px 0px 0px 10px;
+  color: #ed3f3f;
+}

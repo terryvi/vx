@@ -10,6 +10,14 @@ Page({
     isShowResult:false,
     navbar: ['综合', '销量', '价格'],
     currentNavbar: '0',
+    productList:[],
+    isPriceUp:false, // 价格从大到小？ 默认是从小到大
+    updateSize:8,
+    forTest:0,
+    prodScale:0.25,  // 宽是整个拍屏幕宽度的0.25
+    systemInfo:{},
+    navbarHeight:39,
+    selectHeight:51
   },
   bindInput:function(e){
      this.setData({
@@ -33,16 +41,19 @@ Page({
       // wx.navigateTo({
       //     url: '../result/result?searchWord='+this.data.inputValue
       // })
-      this.setData({
-        isShowResult:true
-      })
+      
       wx.showToast({
         title: '努力请求中~',
         icon: 'loading',
         duration: 2000,
         mask:true
       })
-      // console.log('马上就要跳转了！')
+      
+      var tmpArr = this.getProductList(0);
+      this.setData({
+        isShowResult:true,
+        productList:tmpArr
+      })
     }else{
       console.log('空白的你搜个jb')
     }
@@ -73,7 +84,14 @@ Page({
     // this.onLoad();
   },
   onLoad:function(){
-      console.log(this.data.getSearch);
+      var that = this;
+      wx.getSystemInfo({
+        success: function(res) {
+          that.setData({
+            systemInfo:res
+          })
+        }
+      })
   },
   onShow:function(){
     // var getSearch = wx.getStorageSync('searchData');
@@ -84,17 +102,6 @@ Page({
       hotSearch:hotSearch,
       inputValue:''
     })
-
-    console.log('search is onshow')
-  },
-  onHide:function(){
-    console.log('search is onHide')
-    wx.redirectTo({
-        url: '../search/search'
-    })
-  },
-  bindchange:function(e){
-    console.log('bindchange');
 
   },
   clearInput:function(){
@@ -110,10 +117,106 @@ Page({
     })
   },
   switchNav: function(e) {
+    if(e.currentTarget.dataset.idx == 2){
+        var tmp = this.data.isPriceUp;    
+        this.setData({
+          currentNavbar: e.currentTarget.dataset.idx,
+          isPriceUp: !tmp
+        })
+        var tmpArr = this.getProductList(e.currentTarget.dataset.idx);
+        this.setData({
+          productList:tmpArr
+        })
+    }else if(this.data.currentNavbar!=e.currentTarget.dataset.idx){
+        this.setData({
+          currentNavbar: e.currentTarget.dataset.idx,
+          isPriceUp:false
+        })
+        var tmpArr = this.getProductList(e.currentTarget.dataset.idx);
+         this.setData({
+          productList:tmpArr
+        })
+    }else{
+        console.log('没什么变化，不需要更新');
+    }
+  },
+  /**
+   * [getProductList 仅仅是用来获取数据，不做更新处理]
+   * @param  {[type]} idx [description]
+   * @return {[type]}     [description]
+   */
+  getProductList:function(idx){
+      wx.showNavigationBarLoading();
+      // 根据idx以及isPriceUp来判断请求哪一种数据, 参数包括 inputvalue updateSize productList.length isPriceUp,idx
+      var index = ++this.data.forTest;
+      var tmpArr = [
+        {
+          name: index+'水电费水电费是胜多负少',
+          url:'http://f.p.cycangcdn.com/supplier/1467687105197.jpg',
+          price:2323,
+          id:'121323'
+        },
+        {
+          name: index+'发生地方是对方身份',
+          url:'http://f.p.cycangcdn.com/supplier/1467687105197.jpg',
+          price:2323,
+          id:'121323',
+        },
+        {
+          name:index+'是对方身份',
+          url:'http://f.p.cycangcdn.com/supplier/1467687105197.jpg',
+          price:2323,
+          id:'121323'
+        },
+        {
+          name:index+'发广告的风格的风格',
+          url:'http://f.p.cycangcdn.com/supplier/1467687105197.jpg',
+          price:2323,
+          id:'121323'
+        },
+        {
+          name: index+'水电费水电费是胜多负少',
+          url:'http://f.p.cycangcdn.com/supplier/1467687105197.jpg',
+          price:2323,
+          id:'121323'
+        },
+        {
+          name: index+'发生地方是对方身份',
+          url:'http://f.p.cycangcdn.com/supplier/1467687105197.jpg',
+          price:2323,
+          id:'121323',
+        },
+        {
+          name:index+'是对方身份',
+          url:'http://f.p.cycangcdn.com/supplier/1467687105197.jpg',
+          price:2323,
+          id:'121323'
+        },
+        {
+          name:index+'发广告的风格的风格',
+          url:'http://f.p.cycangcdn.com/supplier/1467687105197.jpg',
+          price:2323,
+          id:'121323'
+        }
+      ];
+      this.setData({
+        forTest:index
+      })
+      // 数据回来的时候关闭加载
+      wx.hideNavigationBarLoading();
+      return tmpArr;
+  },
+  pullUpLoad:function(){
+    // 下拉加载
+    console.log(11111);
+    var tmpArr = this.getProductList(this.data.currentNavbar);
+    console.log(tmpArr);
+    var tmpArr2 = this.data.productList;
+    console.log(tmpArr2)
+    var sliceArr = tmpArr2.concat(tmpArr);
+    console.log(sliceArr);
     this.setData({
-      currentNavbar: e.currentTarget.dataset.idx
+      productList:sliceArr
     })
-    wx.showNavigationBarLoading();
-    // 本来应该是发送请求去服务端的，现在就本地的来
   }
 })
