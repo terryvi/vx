@@ -47,10 +47,10 @@
   		</view>
       
   		<scroll-view class="hot-item-container" style="height: {{systemInfo.windowHeight-navbarHeight-selectHeight}}px;"
-  		  scroll-y="true" bindscrolltolower="pullUpLoad">
+  		  scroll-y="true" bindscrolltolower="pullUpLoad"> 
           
   		  <block wx:for="{{productList}}" wx:for-index="idx" wx:for-item="product">
-  		    <view class="c_prod_item">
+  		    <view class="c_prod_item" data-id="{{product.id}}" bindtap="gotoDetail">
             <view class="c_prod_img c_left">
                 <image src="{{product.url}}"  style="width:100%;height:{{systemInfo.windowWidth*prodScale}}px;"  bindLoad="imageLoad"></image>
             </view>

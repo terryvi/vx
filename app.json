@@ -2,9 +2,8 @@
   "pages": [
     "page/index/index",
     "page/list/index",
-    "page/search/index",
-    "page/result/result"
-  ],
+    "page/search/index"
+  ], 
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "次元仓",

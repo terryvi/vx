@@ -207,16 +207,18 @@ Page({
       return tmpArr;
   },
   pullUpLoad:function(){
-    // 下拉加载
-    console.log(11111);
+    // 下拉加载 
     var tmpArr = this.getProductList(this.data.currentNavbar);
-    console.log(tmpArr);
     var tmpArr2 = this.data.productList;
-    console.log(tmpArr2)
     var sliceArr = tmpArr2.concat(tmpArr);
-    console.log(sliceArr);
     this.setData({
       productList:sliceArr
     })
+  },
+  gotoDetail:function(e){
+      console.log(e.currentTarget.dataset.id);
+      wx.navigateTo({
+        url:'../detail/index?id='+e.currentTarget.dataset.id
+      })
   }
 })
